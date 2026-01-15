@@ -1,0 +1,200 @@
+import React from "react";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
+// Assets
+import girls from "../assets/girls.png";
+import boys from "../assets/boys.png";
+import car from "../assets/car.jpeg";
+import doll from "../assets/doll.jpeg";
+import newcar from "../assets/newcar.jpeg";
+import newborn from "../assets/newborn.jpeg";
+import draw from "../assets/draw.jpeg";
+import teddy from "../assets/teddy.jpeg";
+import robot from "../assets/robot.jpeg";
+import barbie from "../assets/barbie.jpeg";
+import chess from "../assets/chess.jpeg";
+import doctor from "../assets/doctor.jpeg";
+import offercar from "../assets/offercar.jpeg";
+import onefree from "../assets/onefree.jpeg";
+import arrival from "../assets/arrival.jpeg";
+import newarrivals from "../assets/newarrivals.png";
+import dollhouse from "../assets/dollhouse.jpeg";
+import off50 from "../assets/off50.jpeg";
+
+// Slider Settings
+const bannerSettings = {
+  dots: true,
+  infinite: true,
+  speed: 1000,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  autoplay: true,
+  autoplaySpeed: 3000,
+  arrows: false,
+};
+
+const productSettings = {
+  dots: false,
+  infinite: true,
+  speed: 1000,
+  slidesToShow: 5,
+  slidesToScroll: 1,
+  autoplay: true,
+  autoplaySpeed: 3000,
+  arrows: false,
+  responsive: [
+    { breakpoint: 1024, settings: { slidesToShow: 3 } },
+    { breakpoint: 768, settings: { slidesToShow: 2 } },
+    { breakpoint: 480, settings: { slidesToShow: 1 } },
+  ],
+};
+
+// Data
+const banners = [
+  { img: offercar, text: "Buy 1 Get 1 Free", cta: "Shop Now" },
+  { img: arrival, text: "New Arrivals Just Dropped!", cta: "Explore" },
+  { img: dollhouse, text: "Flat 50% OFF on Doll Houses", cta: "Grab Deal" },
+];
+
+const products = [
+  { img: car, name: "Sports Cars", desc: "40-50% off" },
+  { img: doll, name: "Dolls", desc: "Save 30%" },
+  { img: newborn, name: "NewBorn Toys", desc: "New Arrivals" },
+  { img: draw, name: "Drawing Kits", desc: "Special Offer" },
+  { img: teddy, name: "Teddy Bears", desc: "New Arrivals" },
+  { img: newcar, name: "Vintage Cars", desc: "Save 20%" },
+  { img: robot, name: "Robots", desc: "Special Offer" },
+  { img: barbie, name: "Barbies", desc: "Girls' Special" },
+  { img: doctor, name: "Doctor Set", desc: "Save 10%" },
+  { img: chess, name: "Board Games", desc: "Save 50%" },
+];
+
+const features = [
+  {
+    icon: "🧸",
+    title: "100% Safe & Non-Toxic",
+    desc: "All our toys are child-safe, certified and made with non-toxic materials.",
+  },
+  {
+    icon: "🚚",
+    title: "Free & Fast Delivery",
+    desc: "Enjoy free shipping on orders above ₹499 with quick delivery.",
+  },
+  {
+    icon: "💰",
+    title: "Affordable & Trusted",
+    desc: "Best deals, trusted brands and hassle-free return policy.",
+  },
+];
+
+const sections = ["About", "Help", "Consumer Policy", "Group Companies", "Mail Us"];
+
+// Components
+const Banner = ({ img, text, cta }) => (
+  <div className="relative h-[50vh] rounded-xl overflow-hidden">
+    <img src={img} alt={text} className="w-full h-full object-cover" />
+    <div className="absolute inset-0 bg-black/40 flex flex-col items-center justify-center text-white">
+      <h2 className="text-3xl md:text-4xl font-bold">{text}</h2>
+      <button className="mt-4 px-6 py-2 bg-pink-600 rounded-lg shadow hover:bg-pink-700 transition">
+        {cta}
+      </button>
+    </div>
+  </div>
+);
+
+const CategoryCard = ({ img, title }) => (
+  <div className="cursor-pointer border rounded-xl shadow-md overflow-hidden transition transform duration-300 hover:scale-105">
+    <img src={img} alt={title} className="w-full h-full object-cover" />
+    <div className="absolute bottom-2 left-2 bg-black/50 text-white px-3 py-1 rounded">
+      {title}
+    </div>
+  </div>
+);
+
+const ProductCard = ({ img, name, desc }) => (
+  <div className="bg-white rounded-xl shadow-md p-3 text-center transition transform duration-300 hover:scale-105 hover:shadow-xl">
+    <img src={img} alt={name} className="h-[200px] w-full object-contain" loading="lazy" />
+    <h2 className="mt-2 font-semibold">{name}</h2>
+    <p className="text-sm text-gray-600">{desc}</p>
+    <button className="mt-2 px-4 py-1 bg-pink-600 text-white rounded-lg hover:bg-pink-700">
+      Buy Now
+    </button>
+  </div>
+);
+
+const FeatureCard = ({ icon, title, desc }) => (
+  <div className="bg-white p-6 rounded-xl shadow-md text-center hover:shadow-lg transition">
+    <h3 className="font-semibold text-lg">
+      {icon} {title}
+    </h3>
+    <p className="mt-2 text-gray-600">{desc}</p>
+  </div>
+);
+
+const FooterSection = ({ title }) => (
+  <div className="w-[200px] md:h-[40vh] mt-5 p-4 rounded-lg shadow">
+    <h2 className="underline text-center mb-2">{title}</h2>
+    <div className="mt-7 p-2 rounded text-sm text-gray-600">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+    </div>
+  </div>
+);
+
+// Main Page
+const Home = () => {
+  return (
+    <div className="md:h-full flex flex-col justify-start pt-[50px] items-center bg-pink-50">
+      
+      {/* Banner Slider */}
+      <div className="w-full cursor-pointer px-4">
+        <Slider {...bannerSettings}>
+          {banners.map((item, index) => (
+            <Banner key={index} {...item} />
+          ))}
+        </Slider>
+      </div>
+
+      {/* Category Section */}
+      <div className="md:h-[60vh] w-full flex justify-around mt-10 px-4 gap-4">
+        <CategoryCard img={girls} title="For Girls" />
+        <CategoryCard img={boys} title="For Boys" />
+      </div>
+
+      {/* Product Slider */}
+      <div className="w-full mt-10 px-4">
+        <Slider {...productSettings}>
+          {products.map((item, index) => (
+            <ProductCard key={index} {...item} />
+          ))}
+        </Slider>
+      </div>
+
+      {/* Why Choose Us */}
+      <div className="bg-pink-100 mt-10 py-10 px-4 w-full">
+        <h2 className="text-3xl font-bold text-center mb-6 text-pink-700">
+          Why Choose Us?
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          {features.map((item, index) => (
+            <FeatureCard key={index} {...item} />
+          ))}
+        </div>
+      </div>
+
+      {/* Footer */}
+      <div className="bg-white w-full mt-10 flex justify-center gap-10 flex-wrap p-4">
+        {sections.map((title, i) => (
+          <FooterSection key={i} title={title} />
+        ))}
+      </div>
+
+      <div className="w-full text-center py-4 bg-pink-600 text-white mt-5">
+        © 2025 ToyJoy. All rights reserved.
+      </div>
+    </div>
+  );
+};
+
+export default Home;
